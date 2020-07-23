@@ -25,15 +25,24 @@ function incrimentNumber(pluseButtonID, iphoneCountValue) {
 incrimentNumber("iphoneCountBtnPlus", "iphoneCount"); // call for iphone
 incrimentNumber("coverCountBtnPlus", "coverCount"); // call for cover
 
-//calculate live price for incriment:
+//calculate live price of phone incriment:
 function incrimentPriceOfPhone(priceId,quantintyOfProduct, unitPrice) {
     var total = quantintyOfProduct * unitPrice;
     document.getElementById(priceId).innerText = total; //replace value
+    var Taka = parseInt (document.getElementById("totalTaka").innerText);
+    var totalTaka = total + Taka;
+    document.getElementById("totalTaka").innerText = totalTaka;
 }
 
+//calculate live price of cover incriment:
 function incrimentPriceOfCover(priceId,quantintyOfProduct, unitPrice) {
     var total = quantintyOfProduct * unitPrice;
     document.getElementById(priceId).innerText = total; //replace value
+
+    document.getElementById(priceId).innerText = total; //replace value
+    var Taka = parseInt (document.getElementById("totalTaka").innerText);
+    var totalTaka = total + Taka;
+    document.getElementById("totalTaka").innerText = totalTaka;
 }
 
 
@@ -47,6 +56,12 @@ function decrementNumber(minusButtonID, iphoneCountLessValue) {
             runningValueInInputField = 0;
         } else {
             document.getElementById(iphoneCountLessValue).value = runningValueInInputField;
+        }
+//// dectiment total live price when click minus button
+        if(minusButtonID == "iphoneCountBtnMinus"){
+            incrimentPriceOfPhone("iphonPrice",runningValueInInputField,unitPriceOfPhone);
+        }else if(minusButtonID == "coverCountBtnMinus"){
+            incrimentPriceOfCover("Coverprice",runningValueInInputField,unitPriceOfCover);
         }
     }
 }
